@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Bakkerij Guns in Overijse - ambachtelijk vers gebak, zuurdesembrood en koffiekoeken. Dagelijks vers gebakken zonder kortere wegen.">
+<meta property="og:title" content="Bakkerij Guns Overijse">
+<meta property="og:description" content="Ambachtelijke bakkerij met vers brood, koffiekoeken en Brésilienne gebak.">
+<meta property="og:type" content="business.business">
+<title>Bakkerij Guns Overijse</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍞</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine:#2B0F14;
+    --crust:#6B3A22;
+    --cream:#F4EBDB;
+    --gold:#B8894A;
+    --blush:#E7C6A9;
+    --paper:#FBF6ED;
+    --ink:#2A1B14;
+    --cream-78:rgba(244,235,219,.78);
+    --cream-72:rgba(244,235,219,.72);
+    --cream-66:rgba(244,235,219,.66);
+    --cream-6:rgba(244,235,219,.6);
+    --cream-4:rgba(244,235,219,.4);
+    --cream-2:rgba(244,235,219,.2);
+    --cream-14:rgba(244,235,219,.14);
+    --cream-16:rgba(244,235,219,.16);
+    --crust-18:rgba(107,58,34,.18);
+    --crust-15:rgba(107,58,34,.15);
+    --crust-12:rgba(107,58,34,.12);
+    --gold-2:rgba(184,137,74,.2);
+    --text-muted:#5b4a3f;
+    --text-secondary:#8a776a;
+    --text-light:#a3907f;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth; overflow-x:hidden;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-weight:400;
+    overflow-x:hidden;
+    max-width:100%;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces',serif;}
+  .mono{font-family:'IBM Plex Mono',monospace; letter-spacing:.04em;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 40px;
+    mix-blend-mode:difference;
+    color:#fff;
+  }
+  nav .brand{font-family:'Fraunces',serif;font-size:20px;font-weight:500;letter-spacing:.02em;}
+  nav ul{display:flex;gap:34px;list-style:none;font-size:13px;text-transform:uppercase;letter-spacing:.12em;}
+  nav ul a{opacity:.85;transition:opacity .25s;}
+  nav ul a:hover{opacity:1;}
+  .nav-toggle{
+    display:none;width:24px;height:24px;background:none;border:none;
+    color:#fff;cursor:pointer;font-size:20px;padding:0;
+    transition:opacity .3s;z-index:51;
+  }
+  .nav-toggle:hover,.nav-toggle:focus{opacity:.7;}
+  .nav-toggle:focus-visible{outline:2px solid var(--gold);outline-offset:4px;}
+  @media(max-width:760px){
+    nav{overflow-x:hidden;}
+    .nav-toggle{display:block;}
+    nav ul{
+      position:absolute;top:70px;left:0;right:0;width:100%;
+      display:none;flex-direction:column;gap:0;padding:20px 40px;box-sizing:border-box;
+      background:var(--wine);max-height:0;overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;
+      transition:max-height .3s ease, opacity .25s ease, visibility 0s linear .3s;z-index:49;
+    }
+    nav ul.open{
+      display:flex;max-height:300px;opacity:1;visibility:visible;pointer-events:auto;
+      border-bottom:1px solid var(--cream-2);transition:max-height .3s ease, opacity .25s ease, visibility 0s linear 0s;
+    }
+    nav ul li{padding:12px 0;border-top:1px solid var(--cream-2);}
+    nav ul li:first-child{border-top:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    background:var(--wine);
+    color:var(--cream);
+    display:flex;align-items:center;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(184,137,74,.18), transparent 55%),
+      radial-gradient(ellipse at 85% 90%, rgba(231,198,169,.10), transparent 50%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;z-index:2;
+    display:grid;grid-template-columns:1.1fr .9fr;gap:40px;
+    align-items:center;
+    width:100%;
+    padding-top:90px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--gold);
+    display:flex;align-items:center;gap:14px;
+    margin-bottom:26px;
+    opacity:0;animation:rise .9s ease forwards .15s;
+  }
+  .eyebrow::before{content:"";width:32px;height:1px;background:var(--gold);}
+  .hero h1{
+    font-size:clamp(48px,7vw,96px);
+    font-weight:500;
+    line-height:.98;
+    letter-spacing:-.01em;
+    opacity:0;animation:rise 1s ease forwards .3s;
+  }
+  .hero h1 em{
+    font-style:italic;font-weight:400;color:var(--blush);
+  }
+  .hero p.lede{
+    margin-top:26px;max-width:460px;
+    font-size:17px;line-height:1.75;color:var(--cream-78);
+    opacity:0;animation:rise 1s ease forwards .5s;
+  }
+  .hero-ctas{margin-top:38px;display:flex;gap:16px;flex-wrap:wrap;
+    opacity:0;animation:rise 1s ease forwards .65s;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 28px;border-radius:2px;border:none;
+    font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    font-weight:500;
+    transition:transform .3s ease, background .3s ease, color .3s ease;
+    cursor:pointer;
+  }
+  .btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+  .btn-solid{background:var(--gold);color:var(--wine);}
+  .btn-solid:hover{transform:translateY(-2px);background:var(--blush);}
+  .btn-line{border:1px solid var(--cream-4);color:var(--cream);}
+  .btn-line:hover{transform:translateY(-2px);border-color:var(--gold);color:var(--gold);}
+
+  /* signature: seal */
+  .seal{
+    position:relative;z-index:2;
+    width:190px;height:190px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    justify-self:end;
+    animation:spin 34s linear infinite;
+    opacity:0;
+  }
+  .seal.show{opacity:1; animation:rise 1s ease forwards .8s, spin 34s linear infinite;}
+  .seal svg{width:100%;height:100%;}
+
+  /* hero loaf illustration */
+  .loaf-wrap{position:relative;z-index:1;display:flex;justify-content:center;align-items:center;}
+  .loaf-wrap svg{width:100%;max-width:460px;height:auto;
+    opacity:0;animation:riseSlow 1.2s ease forwards .5s;}
+
+  @keyframes rise{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes riseSlow{from{opacity:0;transform:translateY(30px) scale(.96);}to{opacity:1;transform:translateY(0) scale(1);}}
+  @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+  .scroll-cue{
+    position:absolute;bottom:34px;left:40px;z-index:2;
+    display:flex;align-items:center;gap:12px;
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--cream-6);
+  }
+  @media(max-width:900px){
+    .scroll-cue{display:none;}
+  }
+  .scroll-cue .line{width:1px;height:36px;background:var(--cream-4);position:relative;overflow:hidden;}
+  .scroll-cue .line::after{content:"";position:absolute;top:-100%;left:0;width:100%;height:100%;background:var(--gold);animation:pour 2.4s ease-in-out infinite;}
+  @keyframes pour{0%{top:-100%;}50%{top:0;}100%{top:100%;}}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;padding-top:130px;}
+    .seal{display:none;}
+    .loaf-wrap{order:-1;margin-bottom:10px;}
+    .loaf-wrap svg{max-width:280px;}
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:130px 0;position:relative;}
+  .section-head{max-width:640px;margin-bottom:70px;}
+  .section-head .eyebrow{color:var(--crust);}
+  .section-head .eyebrow::before{background:var(--crust);}
+  .section-head h2{font-size:clamp(34px,4vw,52px);font-weight:500;line-height:1.08;}
+  .section-head p{margin-top:20px;font-size:16.5px;line-height:1.75;color:var(--text-muted);max-width:520px;}
+  .fade-up{opacity:0;transform:translateY(28px);transition:opacity .9s ease, transform .9s ease;}
+  .fade-up.in{opacity:1;transform:translateY(0);}
+  a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+  /* ---------- STORY ---------- */
+  .story{background:var(--paper);}
+  .story-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:center;}
+  .story-figure{
+    position:relative;aspect-ratio:4/5;border-radius:2px;overflow:hidden;
+    background:linear-gradient(155deg,var(--blush),var(--cream));
+  }
+  .story-figure svg{width:100%;height:100%;}
+  .story-text p{font-size:17.5px;line-height:1.85;color:#4a3a2f;margin-bottom:20px;}
+  @media(max-width:640px){
+    .story-text p{font-size:16px;line-height:1.7;}
+  }
+  .story-text p:first-child{font-family:'Fraunces',serif;font-size:26px;font-weight:400;font-style:italic;color:var(--wine);line-height:1.5;}
+  .stat-row{display:flex;gap:52px;margin-top:44px;padding-top:36px;border-top:1px solid rgba(107,58,34,.18);}
+  .stat b{display:block;font-family:'Fraunces',serif;font-size:38px;color:var(--crust);}
+  .stat span{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);}
+  @media(max-width:900px){.story-grid{grid-template-columns:1fr;gap:44px;}}
+
+  /* ---------- SPECIALTIES ---------- */
+  .specialties{background:var(--wine);color:var(--cream);}
+  .specialties .section-head .eyebrow{color:var(--gold);}
+  .specialties .section-head .eyebrow::before{background:var(--gold);}
+  .specialties .section-head p{color:var(--cream-72);}
+  .spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--cream-14);border:1px solid var(--cream-14);}
+  .spec-card{
+    background:var(--wine);padding:46px 34px;
+    transition:background .4s ease;
+  }
+  .spec-card:hover{background:#3a1620;}
+  .spec-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--gold);letter-spacing:.1em;}
+  .spec-card h3{font-size:25px;font-weight:500;margin:18px 0 12px;}
+  .spec-card p{font-size:15px;line-height:1.7;color:var(--cream-66);}
+  .spec-tag{
+    display:inline-block;margin-top:20px;font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--blush);
+    border-top:1px solid var(--cream-2);padding-top:14px;
+  }
+  @media(max-width:860px){.spec-grid{grid-template-columns:1fr;}}
+
+  /* ---------- REVIEWS ---------- */
+  .reviews{background:var(--cream);}
+  .review-marquee{
+    display:flex;gap:26px;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  }
+  .review-track{display:flex;gap:26px;animation:scroll 42s linear infinite;}
+  .review-track:hover{animation-play-state:paused;}
+  .review-track:focus-within{animation-play-state:paused;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(calc(-100% - 26px));}}
+  .review-card{
+    flex:0 0 340px;background:var(--paper);border:1px solid var(--crust-15);
+    border-radius:2px;padding:32px;transition:transform .3s ease;
+  }
+  .review-card:focus-within{transform:translateY(-4px);}
+  .stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:16px;}
+  .review-card q{display:block;font-family:'Fraunces',serif;font-style:italic;font-size:18px;line-height:1.6;color:var(--wine);}
+  .review-meta{margin-top:20px;padding-top:16px;border-top:1px solid var(--crust-12);
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-secondary);}
+  .review-source{margin-top:40px;display:flex;align-items:center;gap:14px;font-size:13px;color:var(--text-muted);}
+  .review-source b{color:var(--wine);}
+  @media(max-width:640px){
+    .review-source{flex-direction:column;align-items:flex-start;gap:8px;}
+  }
+
+  /* ---------- VISIT ---------- */
+  .visit{background:var(--wine);color:var(--cream);}
+  .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
+  @media(max-width:900px){
+    .visit-grid{grid-template-columns:1fr;gap:44px;}
+  }
+  .visit h2{font-size:clamp(32px,4vw,48px);font-weight:500;margin-bottom:26px;}
+  .visit-list{margin-top:20px;}
+  .visit-row{display:flex;justify-content:space-between;padding:16px 0;border-top:1px solid var(--cream-16);font-size:15px;}
+  .visit-row:last-child{border-bottom:1px solid var(--cream-16);}
+  @media(max-width:640px){
+    .visit-row{flex-direction:column;gap:8px;}
+    .visit-row span:first-child{color:var(--cream-6);}
+  }
+  .visit-row span:first-child{color:var(--cream-6);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.06em;text-transform:uppercase;}
+  .map-box{
+    border:1px solid var(--cream-2);min-height:340px;position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;background:#3a1620;
+  }
+  @media(max-width:640px){
+    .map-box{min-height:280px;}
+  }
+  .map-box svg{width:100%;height:100%;position:absolute;inset:0;opacity:.5;}
+  .map-pin{position:relative;z-index:2;text-align:center;}
+  .map-pin .dot{width:14px;height:14px;border-radius:50%;background:var(--gold);margin:0 auto 14px;box-shadow:0 0 0 8px var(--gold-2);}
+  .map-pin p{font-family:'Fraunces',serif;font-size:20px;font-style:italic;}
+  .map-pin span{display:block;margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--cream-6);}
+
+  /* ---------- FOOTER / CTA ---------- */
+  footer{background:var(--paper);padding:110px 0 50px;}
+  .cta-final{text-align:center;max-width:640px;margin:0 auto 90px;}
+  .cta-final h2{font-size:clamp(34px,5vw,58px);font-weight:500;line-height:1.05;}
+  .cta-final h2 em{font-style:italic;color:var(--crust);}
+  .cta-final p{margin:22px 0 34px;font-size:16.5px;color:var(--text-muted);}
+  .cta-final .btn-solid{background:var(--wine);color:var(--cream);}
+  .cta-final .btn-solid:hover{background:var(--crust);}
+  .foot-grid{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:30px;
+    padding-top:44px;border-top:1px solid rgba(107,58,34,.18);}
+  .foot-brand{font-family:'Fraunces',serif;font-size:22px;}
+  .foot-links{display:flex;gap:28px;font-size:13px;color:var(--text-muted);}
+  @media(max-width:640px){
+    .foot-links{flex-direction:column;gap:12px;}
+  }
+  .foot-fine{width:100%;margin-top:40px;font-size:12px;color:var(--text-light);font-family:'IBM Plex Mono',monospace;}
+
+  ::selection{background:var(--gold);color:var(--wine);}
+  @media(max-width:480px){
+    .wrap{padding:0 16px;}
+    nav{padding:16px 20px;}
+    section{padding:80px 0;}
+    .hero-grid{padding-top:100px;gap:20px;}
+    .spec-grid{gap:0;}
+    .review-marquee{-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Bakkerij Guns</div>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="nav-menu">☰</button>
+  <ul id="nav-menu">
+    <li><a href="#story">Verhaal</a></li>
+    <li><a href="#specialties">Specialiteiten</a></li>
+    <li><a href="#reviews">Beoordelingen</a></li>
+    <li><a href="#visit">Bezoek ons</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Overijse sinds jaar en dag</div>
+      <h1>Elke ochtend<br>opnieuw <em>vers</em><br>gebakken.</h1>
+      <p class="lede">Zuurdesembrood met een krokante korst, boterzachte koffiekoeken en onze onweerstaanbare Brésilienne. Bakkerij Guns bakt met geduld, niet met kortere wegen.</p>
+      <div class="hero-ctas">
+        <a href="#visit" class="btn btn-solid">Route naar de winkel</a>
+        <a href="#specialties" class="btn btn-line">Bekijk het gamma</a>
+      </div>
+    </div>
+    <div class="loaf-wrap">
+      <svg viewBox="0 0 420 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustratie van een gevlochten brood">
+        <ellipse cx="210" cy="360" rx="150" ry="18" fill="#1c0a0d"/>
+        <g>
+          <path d="M90 230 Q95 150 210 140 Q325 150 330 230 Q335 290 210 300 Q85 290 90 230Z" fill="#B8894A"/>
+          <path d="M90 230 Q95 150 210 140 Q325 150 330 230 Q335 290 210 300 Q85 290 90 230Z" fill="none" stroke="#7A5327" stroke-width="2" opacity=".4"/>
+          <g stroke="#8C602F" stroke-width="2.5" fill="none" opacity=".7">
+            <path d="M120 165 Q160 200 120 240 Q160 275 130 290"/>
+            <path d="M165 150 Q200 195 165 235 Q200 275 175 296"/>
+            <path d="M210 142 Q245 190 210 232 Q245 274 210 300"/>
+            <path d="M255 150 Q290 195 255 235 Q290 275 245 296"/>
+            <path d="M300 165 Q330 200 295 240 Q330 275 270 290"/>
+          </g>
+          <g fill="#E7C6A9" opacity=".9">
+            <circle cx="140" cy="185" r="2"/><circle cx="180" cy="210" r="2"/><circle cx="230" cy="180" r="2"/>
+            <circle cx="260" cy="220" r="2"/><circle cx="200" cy="250" r="2"/><circle cx="300" cy="195" r="2"/>
+            <circle cx="120" cy="230" r="2"/><circle cx="320" cy="230" r="2"/>
+          </g>
+        </g>
+        <g opacity=".55">
+          <path d="M150 90 Q160 60 145 30" stroke="#E7C6A9" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M210 85 Q222 50 205 15" stroke="#E7C6A9" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <path d="M270 90 Q282 60 268 30" stroke="#E7C6A9" stroke-width="3" stroke-linecap="round" fill="none"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="seal">
+    <svg viewBox="0 0 200 200">
+      <circle cx="100" cy="100" r="92" fill="none" stroke="#B8894A" stroke-width="1.4"/>
+      <circle cx="100" cy="100" r="78" fill="none" stroke="#B8894A" stroke-width="1"/>
+      <path id="circlePath" d="M 100,100 m -85,0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0" fill="none"/>
+      <text font-family="IBM Plex Mono" font-size="11.5" letter-spacing="3" fill="#E7C6A9">
+        <textPath href="#circlePath" startOffset="0%">VANDAAG VERS GEBAKKEN • AMBACHTELIJKE BAKKERIJ •</textPath>
+      </text>
+      <circle cx="100" cy="100" r="4" fill="#B8894A"/>
+    </svg>
+  </div>
+
+  <div class="scroll-cue"><div class="line"></div>ontdek meer</div>
+</header>
+
+<!-- STORY -->
+<section id="story" class="story">
+  <div class="wrap">
+    <div class="story-grid">
+      <div class="story-figure fade-up">
+        <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="500" fill="#E7C6A9"/>
+          <ellipse cx="200" cy="330" rx="150" ry="120" fill="#B8894A"/>
+          <ellipse cx="200" cy="330" rx="150" ry="120" fill="none" stroke="#6B3A22" stroke-width="2" opacity=".3"/>
+          <g stroke="#6B3A22" stroke-width="2" opacity=".55" fill="none">
+            <path d="M90 300 Q200 260 310 300"/>
+            <path d="M85 330 Q200 300 315 330"/>
+            <path d="M95 360 Q200 335 305 360"/>
+          </g>
+          <circle cx="200" cy="150" r="70" fill="#F4EBDB"/>
+          <path d="M140 150 a60 60 0 0 1 120 0" fill="none" stroke="#6B3A22" stroke-width="2" opacity=".4"/>
+          <g fill="#6B3A22" opacity=".7">
+            <circle cx="170" cy="140" r="3"/><circle cx="230" cy="130" r="3"/><circle cx="200" cy="170" r="3"/>
+            <circle cx="150" cy="170" r="3"/><circle cx="250" cy="165" r="3"/>
+          </g>
+        </svg>
+      </div>
+      <div class="story-text fade-up">
+        <p>“Een goede bakker proef je meteen: aan de korst, aan de geur, aan hoe lang het brood vers blijft.”</p>
+        <p>Bij Bakkerij Guns in Overijse draait alles nog rond het ambacht. Deeg krijgt de tijd die het nodig heeft, ovens worden 's nachts al aangestoken en elk baksel wordt met de hand afgewerkt. Geen kortere wegen, geen compromissen.</p>
+        <p>Buurtbewoners komen al jaren terug voor hetzelfde gevoel: binnenstappen in de geur van vers brood, herkend worden aan de toonbank, en naar huis gaan met iets dat ‘s ochtends nog niet bestond.</p>
+        <div class="stat-row">
+          <div class="stat"><b>100%</b><span>Ambachtelijk deeg</span></div>
+          <div class="stat"><b>1x</b><span>Dagelijkse verse baksels</span></div>
+          <div class="stat"><b>4.4</b><span>Klantwaardering</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPECIALTIES -->
+<section id="specialties" class="specialties">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="eyebrow">Het gamma</div>
+      <h2>Drie redenen waarom klanten omrijden.</h2>
+      <p>Geen eindeloze kaart, wel een handvol dingen die we obsessief goed doen.</p>
+    </div>
+    <div class="spec-grid">
+      <div class="spec-card fade-up">
+        <div class="spec-num">01</div>
+        <h3>Zuurdesembrood</h3>
+        <p>Lange rijstijd, natuurlijke desem, krokante korst. Het soort brood waarvan klanten zeggen dat het 'gewoon lekker' is.</p>
+        <span class="spec-tag">Elke ochtend vers</span>
+      </div>
+      <div class="spec-card fade-up">
+        <div class="spec-num">02</div>
+        <h3>Koffiekoeken</h3>
+        <p>Boterzacht, luchtig en volgens vaste klanten beter dan bij de buren. Onze koffiekoeken zijn er niet om te concurreren.</p>
+        <span class="spec-tag">Klantfavoriet</span>
+      </div>
+      <div class="spec-card fade-up">
+        <div class="spec-num">03</div>
+        <h3>La Brésilienne</h3>
+        <p>Ons huisgemaakte gebak met een reputatie: klanten noemen het ‘buitengewoon’ en bevelen het aan bij collega’s en vrienden.</p>
+        <span class="spec-tag">Het huisgeheim</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="reviews">
+  <div class="wrap">
+    <div class="section-head fade-up">
+      <div class="eyebrow">Beoordelingen</div>
+      <h2>Niet onze woorden. Die van de buurt.</h2>
+      <p>Een greep uit wat klanten over ons achterlieten. Onbewerkt en eerlijk.</p>
+    </div>
+  </div>
+  <div class="review-marquee">
+    <div class="review-track" id="track"></div>
+  </div>
+  <div class="wrap">
+    <div class="review-source fade-up">
+      <span>★★★★☆</span>
+      <span><b>4,4 / 5</b> gemiddelde score op basis van klantbeoordelingen uit de buurt.</span>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="visit" class="visit">
+  <div class="wrap visit-grid">
+    <div class="fade-up">
+      <div class="eyebrow" style="color:var(--gold)">Bezoek ons</div>
+      <h2>Kom proeven,<br>niet enkel lezen.</h2>
+      <div class="visit-list">
+        <div class="visit-row"><span>Adres</span><span>Waversesteenweg 64, 3090 Overijse, Belgium</span></div>
+        <div class="visit-row"><span>Di–Vr</span><span>06:30 – 18:00</span></div>
+        <div class="visit-row"><span>Zaterdag</span><span>07:00 – 17:00</span></div>
+       
+        <div class="visit-row"><span>Telefoon</span><span>+32 2 688 01 49</span></div>
+      </div>
+      <div class="hero-ctas" style="margin-top:34px;">
+        <a href="tel:+3226880149" class="btn btn-solid">Bel de winkel</a>
+        <a href="https://maps.app.goo.gl/S4qY48aehZQLjkcb7" target="_blank" class="btn btn-line">Open in Google Maps</a>
+      </div>
+    </div>
+    <div class="map-box fade-up">
+      <svg viewBox="0 0 400 340">
+        <g stroke="#B8894A" stroke-width="1" opacity=".5">
+          <line x1="0" y1="60" x2="400" y2="40"/>
+          <line x1="0" y1="140" x2="400" y2="160"/>
+          <line x1="0" y1="240" x2="400" y2="260"/>
+          <line x1="80" y1="0" x2="60" y2="340"/>
+          <line x1="260" y1="0" x2="290" y2="340"/>
+        </g>
+      </svg>
+      <div class="map-pin">
+        <div class="dot"></div>
+        <p>Bakkerij Guns</p>
+        <span>Overijse, België</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cta-final fade-up">
+      <h2>Vers brood wacht<br>op <em>niemand</em>.</h2>
+      <p>Kom vroeg voor de beste keuze, of leg iets opzij voor later op de dag.</p>
+      <a href="#visit" class="btn btn-solid">Plan je bezoek</a>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-brand">Bakkerij Guns</div>
+      <div class="foot-links">
+        <a href="#story">Verhaal</a>
+        <a href="#specialties">Specialiteiten</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#visit">Bezoek</a>
+      </div>
+      <div class="foot-fine">© 2026 Bakkerij Guns, Overijse ambachtelijk gebakken sinds jaar en dag</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const reviews = [
+    {text:"Altijd vriendelijk, heerlijke grote pistolets, heerlijk zuurdesembrood, verse broodjes. Top service.", meta:"– Liesbeth L., Google review", stars:"★★★★★"},
+    {text:"Hun Vlaams bruin brood is echt heerlijk, net als hun stokbrood en kersentaart.", meta:"– Kris B., Google review", stars:"★★★★★"},
+    {text:"De taartjes zijn heerlijk, vooral de Brésilienne, en dat aan een correcte prijs.", meta:"– Olivier J., Google review", stars:"★★★★★"},
+    {text:"Heerlijke bakkerij met verse producten. Ook de broodjes zijn erg lekker. Een aanrader.", meta:"– Dirk H., Google review", stars:"★★★★★"},
+    {text:"Heel goede bakker. Altijd vers en super lekker!", meta:"– Mathieu V., Google review", stars:"★★★★★"},
+    {text:"Topservice, vriendelijk personeel, lekkere broodjes en gebak. Een aanrader voor prijs-kwaliteit!", meta:"– Pieter V., Google review", stars:"★★★★★"},
+    {text:"Heerlijke koekjes, en het beste brood dat je in de streek vindt.", meta:"– Dirck V., Google review", stars:"★★★★★"},
+  ];
+  
+  const track = document.getElementById('track');
+  function card(r){
+    const d = document.createElement('div');
+    d.className='review-card';
+    d.innerHTML = `<div class="stars">${r.stars}</div><q>${r.text}</q><div class="review-meta">${r.meta}</div>`;
+    return d;
+  }
+  reviews.concat(reviews.slice(0,4)).forEach(r=>track.appendChild(card(r)));
+
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  
+  navToggle?.addEventListener('click', ()=>{
+    const isOpen = navMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  
+  navMenu?.querySelectorAll('a').forEach(link=>{
+    link.addEventListener('click', ()=>{
+      navMenu.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', false);
+    });
+  });
+
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+    },{threshold:.15});
+    document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+  }else{
+    document.querySelectorAll('.fade-up').forEach(el=>el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
